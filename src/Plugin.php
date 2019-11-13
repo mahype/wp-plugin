@@ -40,6 +40,17 @@ class Plugin
      */
     protected $translationPath = '';
 
+    /**
+     * Plugin constructor.
+     *
+     * @since 1.1.0
+     * @return Plugin
+     */
+    public function __construct()
+    {
+        return $this;
+    }
+
 
     /**
      * Register the plugin with the WordPress system.

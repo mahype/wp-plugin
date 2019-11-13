@@ -9,7 +9,7 @@
 ## Example
 ```php
 <?php
-PluginFactory::create()
+(new Plugin)
     ->addTranslation($textdomain, $pathToDirectory)
     ->addService(Service::class)
     ->boot();
