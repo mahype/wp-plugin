@@ -59,13 +59,12 @@ class Plugin
     /**
      * Add service
      *
-     * @param strong $class Class name
+     * @param string $class Class name*
      * @return Plugin
      **/
-    public function addService( string $class )
+    public function addService( string $class, ...$params )
     {
-        $this->services[] = $class;
-
+        $this->services[] = [$class, $params];
         return $this;
     }
 
@@ -93,10 +92,10 @@ class Plugin
         $services = $this->getServices();
         array_walk($services, function ($service) {
 
-            if ( !class_exists( $service ) || !method_exists( $service, 'register' ) )
+            if ( !class_exists( $service[0] ) || !method_exists( $service[0], 'register' ) )
                 return;
 
-                (new $service)->register();
+            (new $service[0](...$service[1]))->register();
         });
     }
 
